@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+     <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <h2>Página de recepción de eventos de Ataque del proyecto: TOSS-TOtal-System-Shield-TOSHI</h2>
+    <br/>
+    <div class="container">          
+  <table class="table table-striped" id="myTable">
+    <thead>
+      <tr>
+        <th>DateTime</th>
+        <th>Address</th>
+        <th>Port</th>
+        <th>Protocol</th>
+        <th>Confidence</th>
+        <th>Class</th>        
+      </tr>
+    </thead>
+    <tbody/>    
+  </table>
+</div>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io();
+  socket.on('item', function(msg){
+  	//console.log("Recibimos item: "+msg);
+  	
+     $('#myTable > tbody:last-child').append('<tr><td>'+msg.datetime+'</td><td>'+msg.address+'</td><td>'+msg.port+'</td><td>'+msg.protocol+'</td><td>'+msg.confidence+'</td><td>'+msg.class+'</td></tr>');
+    });
+  
+</script>
+
+  </body>
+</html>
